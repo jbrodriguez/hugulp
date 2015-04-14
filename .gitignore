@@ -1,0 +1,9 @@
+.DS_Store
+public
+
+# node
+node_modules
+
+# bower
+bower_components
+src/vendor
