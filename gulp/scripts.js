@@ -7,5 +7,5 @@ gulp.task('scripts', function() {
 	    .pipe(jshint())
 	    .pipe(jshint.reporter("default"))	
 	    .pipe(uglify())
-		.pipe(gulp.dest('staging/js'))
-})
+		.pipe(gulp.dest('staging/js'));
+});

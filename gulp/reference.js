@@ -8,7 +8,7 @@ gulp.task('reference:content', ['hugo:draft'], function() {
 	return gulp.src(['public/**/*.html', 'public/**/*.xml'])
 		.pipe(replace({manifest: manifest}))
 		.pipe(size())
-		.pipe(gulp.dest('public'))
+		.pipe(gulp.dest('public'));
 });
 
 gulp.task('reference:all', ['hugo:all'], function() {
@@ -17,8 +17,8 @@ gulp.task('reference:all', ['hugo:all'], function() {
 	return gulp.src(['public/**/*.html', 'public/**/*.xml'])
 		.pipe(replace({manifest: manifest, replaceInExtensions: ['.html', '.xml']}))
 		.pipe(size())
-		.pipe(gulp.dest('public'))
-})
+		.pipe(gulp.dest('public'));
+});
 
 gulp.task('reference:publish', ['hugo:live'], function() {
 	var manifest = gulp.src('public/rev-manifest.json');
@@ -26,5 +26,5 @@ gulp.task('reference:publish', ['hugo:live'], function() {
 	return gulp.src(['public/**/*.html', 'public/**/*.xml'])
 		.pipe(replace({manifest: manifest, replaceInExtensions: ['.html', '.xml']}))
 		.pipe(size())
-		.pipe(gulp.dest('public'))
-})
+		.pipe(gulp.dest('public'));
+});

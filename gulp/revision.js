@@ -9,5 +9,5 @@ gulp.task('revision', ['styles','scripts', 'images', 'svg'], function() {
 		.pipe(gulp.dest('hugo/static'))
 		.pipe(rev.manifest())
         .pipe(del({dest: 'hugo/static'}))		
-		.pipe(gulp.dest('hugo/static'))
+		.pipe(gulp.dest('hugo/static'));
 });
