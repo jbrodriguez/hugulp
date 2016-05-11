@@ -46,7 +46,7 @@ Copy the stock project to a local folder
 $ git clone https://github.com/jbrodiguez/hugulp
 ```
 
-Change directory to the newly create project
+Change directory to the newly created project
 ```
 $ cd hugulp
 ```
