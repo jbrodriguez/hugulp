@@ -23,13 +23,15 @@ gulp.task('hugo:draft', function() {
     hugo(true);
 });
 
-gulp.task('hugo:all', ['revision'], function() {
+gulp.task('hugo:all', ['hugo:delete'], function() {
     hugo(true);
 });
 
 gulp.task('hugo:delete', ['revision'], function() {
-    var dst = path.join(process.cwd(), 'public');   
-    del.sync(dst);
+    var dst1 = path.join(process.cwd(), 'public');   
+    var dst2 = path.join(process.cwd(), 'hugo', 'public');   
+    del.sync(dst1);
+    del.sync(dst2);
 });
 
 gulp.task('hugo:live', ['hugo:delete'], function() {
