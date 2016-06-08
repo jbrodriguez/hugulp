@@ -43,7 +43,7 @@ If Node is already installed, no further action is required.
 Copy the stock project to a local folder
 
 ```
-$ git clone https://github.com/jbrodiguez/hugulp
+$ git clone https://github.com/jbrodriguez/hugulp
 ```
 
 Change directory to the newly created project
