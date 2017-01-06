@@ -1,0 +1,16 @@
+Version 0.1.0 - 2017-01-06
+- Initial commit
+- syntax fix for package.json
+- Add missing semicolons
+- Replace tabs with spaces
+- Update reference.js
+- - Update packages
+- Improve project details and instructions
+- Fix syntax error
+- Delete public folder when running gulp task. Also delete (if existing) the public folder inside hugo.
+- Update dependencies
+- Implement CI automation
+- Add missing variable
+
+
+
