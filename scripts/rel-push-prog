@@ -34,6 +34,8 @@ if [ $? -ne 0 ]; then
 	error "Unable to push branch ${BRANCH} to github"
 fi
 
+DESCRIPTION=`cat metadata/changes/$VERSION.txt 2> /dev/null`
+
 github-release --verbose release \
     --user jbrodriguez \
     --repo "$PROG" \
