@@ -2,15 +2,23 @@
   "name": "hugulp",
   "version": "0.1.0",
   "description": "website",
-  "main": "index.js",
+  "files": [
+	  "index.js",
+	  "gulpfile.js",
+	  "gulp"
+  ],
+  "bin": {
+    "hugulp": "./index.js"
+  },
   "scripts": {
     "gulp": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Juan B. Rodriguez",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "browser-sync": "2.18.5",
+	"commander": "2.9.0",
     "del": "2.2.2",
     "gulp": "3.9.1",
     "gulp-autoprefixer": "3.1.1",
