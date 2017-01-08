@@ -7,5 +7,6 @@ test:
 deploy:
     script:
         - scripts/rel-push-prog
+        - npm publish
     only:
         - /^rel.*$/
