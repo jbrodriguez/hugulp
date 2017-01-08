@@ -15,6 +15,8 @@ fi
 
 echo "Version is $APP_VERSION"
 
+npm --no-git-tag-version -f version ${APP_VERSION}
+
 TAG=`git describe --abbrev=0 --tags 2> /dev/null`
 
 if [[ -z "$TAG" ]]; then
