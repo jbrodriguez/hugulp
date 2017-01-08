@@ -1,11 +1,11 @@
 {
   "name": "hugulp",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "website",
   "files": [
-	  "index.js",
-	  "gulpfile.js",
-	  "gulp"
+    "index.js",
+    "gulpfile.js",
+    "gulp"
   ],
   "bin": {
     "hugulp": "./index.js"
@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "browser-sync": "2.18.5",
-	"commander": "2.9.0",
+    "commander": "2.9.0",
     "del": "2.2.2",
     "gulp": "3.9.1",
     "gulp-autoprefixer": "3.1.1",

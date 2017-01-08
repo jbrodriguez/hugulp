@@ -1,0 +1,7 @@
+2017-01-08 - 1.0.0
+hugulp is now a standalone tool.
+
+This allows for the following improvements
+- Easier to work on multiple sites
+- Easier to update
+- Can be used in CI/CD workflows
