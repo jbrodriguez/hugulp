@@ -20,11 +20,13 @@ function watch() {
 
 program
 	.command('build')
+	.option('-c, --config [value]', 'Define an alternative config')
 	.description('build site (for publishing purposes)')
 	.action(bundle)
 
 program
 	.command('watch')
+	.option('-c, --config [value]', 'Define an alternative config')
 	.description('build site and watch for changes')
 	.action(watch)
 

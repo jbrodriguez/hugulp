@@ -10,7 +10,19 @@ function hugo(drafts) {
 
     gutil.log('src: ' + src + ' dst: ' + dst);
 
-    var cmd = 'hugo --config=config.yaml -s ' + src + ' -d ' + dst;
+	var conf = 'config.toml'
+	var opt, i = process.argv.indexOf("--config");
+	if (i > -1) {
+	    conf = process.argv[i+1];
+	} else {
+		opt, i = process.argv.indexOf("-c");
+		if (i > -1) {
+			conf = process.argv[i+1];
+		}
+	}
+	// console.log('conf %s', conf)
+
+    var cmd = 'hugo --config=' + conf + ' -s ' + src + ' -d ' + dst;
     if (drafts) {
         cmd += ' --buildDrafts=true --verbose=true --baseUrl="http://localhost:3000/" ';
     }
