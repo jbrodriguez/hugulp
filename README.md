@@ -48,6 +48,20 @@ $ mkdir -p assets/{img,styles,scripts}
 $ hugulp build
 ```
 
+It will use hugo's default config file: config.toml, but you can specify a
+different config via the -c, --config switch
+
+```bash
+$ hugulp build --config config.yaml
+```
+
+Or
+
+```bash
+$ hugulp watch --config config.yaml
+```
+
+
 ## Available Commands
 
 ### hugulp watch
@@ -60,7 +74,7 @@ It will do the following:
 
 hugo will be invoked like this:
 ```bash
-$ hugo --config=config.yaml -s . -d ./public --buildDrafts=true --verbose=true --baseUrl="http://localhost:3000/"
+$ hugo --config=config.toml -s . -d ./public --buildDrafts=true --verbose=true --baseUrl="http://localhost:3000/"
 ```
 
 - Change all references to the assets in your content files (index.html, etc.)
@@ -71,7 +85,7 @@ It runs the same pipeline as the hugulp build command, but hugo is invoked as
 follows:
 
 ```bash
-$ hugo --config=config.yaml -s . -d ./public"
+$ hugo --config=config.toml -s . -d ./public"
 ```
 
 Additionally, files are not watched for changes
