@@ -1,3 +1,7 @@
+Version 1.1.0 - 2017-01-28
+- Use hugo default config file
+
+
 Version 1.0.0 - 2017-01-08
 - Add commander dependency
 - Create cli interface
