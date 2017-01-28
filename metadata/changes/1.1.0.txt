@@ -1,0 +1,6 @@
+2017-01-28 - 1.1.0
+
+hugulp now uses hugo default config file (config.toml)
+
+You can specify an alternative config, via a command line switch
+-c, --config
