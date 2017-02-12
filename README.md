@@ -61,7 +61,6 @@ Or
 $ hugulp watch --config config.yaml
 ```
 
-
 ## Available Commands
 
 ### hugulp watch
