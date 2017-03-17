@@ -3,6 +3,7 @@ public
 
 # node
 node_modules
+*.log
 
 # bower
 bower_components
