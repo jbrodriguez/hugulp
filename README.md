@@ -65,19 +65,25 @@ $ hugulp watch --config config.yaml
 
 ### hugulp watch
 It will do the following:
-- Convert sass to css, then minify the result (works on assets/styles/*.{css,scss})
-- Compress images (works on assets/images/\*.*)
-- Minify javascript files (works on assets/scripts/*.js)
-- Fingerprint the optimized assets from the previous steps
-- Invoke hugo to generate the site
+1. Process files based on their location, according to the following table
+
+| In Folder | Looks for  | Operation |
+| ------ | :-----: | --------- |
+| assets/styles | scss, less, css | Convert sass/less to css, then minify the result |
+| assets/img | * | Compress changed images |
+| assets/scripts | js | Minify javascript code |
+*Note: It searches the folders recursively*
+
+2. Fingerprint the optimized assets from the previous step
+3. Invoke hugo to generate the site
 
 hugo will be invoked like this:
 ```bash
 $ hugo --config=config.toml -s . -d ./public --buildDrafts=true --verbose=true --baseUrl="http://localhost:3000/"
 ```
 
-- Change all references to the assets in your content files (index.html, etc.)
-- Watch for changes to content files or assets to reload the browser
+4. Change all references to the assets in your content files (index.html, etc.)
+5. Watch for changes to content files or assets to reload the browser
 
 ### hugulp build
 It runs the same pipeline as the hugulp build command, but hugo is invoked as
