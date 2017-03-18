@@ -1,3 +1,11 @@
+Version 1.2.0 - 2017-03-18
+- Ignore log files
+- Add less support
+- Expand glob for assets
+- Update README
+- Remove log file
+
+
 Version 1.1.2 - 2017-03-17
 - Process subdirectories
 
