@@ -6,15 +6,15 @@ var less = require('gulp-less');
 var merge = require('merge-stream');
 var concat = require('gulp-concat');
 
-var lessStream = gulp.src(['assets/styles/*.less'])
+var lessStream = gulp.src(['assets/styles/**/*.less'])
     .pipe(less())
     .pipe(concat('less-files.less'));
 
-var scssStream = gulp.src(['assets/styles/*.scss'])
+var scssStream = gulp.src(['assets/styles/**/*.scss'])
     .pipe(sass())
     .pipe(concat('scss-files.scss'));
 
-var cssStream = gulp.src(['assets/styles/*.css'])
+var cssStream = gulp.src(['assets/styles/**/*.css'])
     .pipe(concat('css-files.css'));
 
 gulp.task('styles', function() {
