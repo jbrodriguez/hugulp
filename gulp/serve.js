@@ -13,5 +13,5 @@ gulp.task('serve', ['build:all'], function() {
     // add browserSync.reload to the tasks array to make
     // all browsers reload after tasks are complete.
     gulp.watch(['layouts/**/*', 'content/**/*', 'archetypes/**/*'], ['build:content']);
-    gulp.watch(['assets/styles/**/*.scss', 'assets/styles/**/*.css', 'assets/scripts/**/*.js', 'assets/img/**/*.*', 'assets/svg/**/*.svg'], ['build:all']);
+    gulp.watch(['assets/styles/**/*.scss', 'assets/styles/**/*.less', 'assets/styles/**/*.css', 'assets/scripts/**/*.js', 'assets/img/**/*.*', 'assets/svg/**/*.svg'], ['build:all']);
 });
