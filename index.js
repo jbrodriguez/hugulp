@@ -4,6 +4,7 @@ var sysPath = require('path')
 var fs = require('fs')
 var program = require('commander')
 var gulp = require('gulp')
+var pkginfo = require('pkginfo')(module, 'version');
 
 var join = sysPath.join
 
@@ -18,6 +19,10 @@ function watch() {
 	gulp.start('serve')
 }
 
+function version() {
+	console.log("hugulp v" + module.exports.version)
+}
+
 program
 	.command('build')
 	.option('-c, --config [value]', 'Define an alternative config')
@@ -29,5 +34,11 @@ program
 	.option('-c, --config [value]', 'Define an alternative config')
 	.description('build site and watch for changes')
 	.action(watch)
+
+program
+	.command('version')
+	.option('-v, --version', 'Display version')
+	.description('display version information')
+	.action(version)
 
 program.parse(process.argv)

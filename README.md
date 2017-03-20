@@ -95,6 +95,9 @@ $ hugo --config=config.toml -s . -d ./public"
 
 Additionally, files are not watched for changes
 
+### hugulp version
+Display installed version
+
 ## How to update
 Whenever a new *hugulp* version becomes available, you can update it by running
 ```bash
