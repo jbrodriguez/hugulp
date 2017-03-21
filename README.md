@@ -15,9 +15,11 @@ This project Includes the following tools, tasks and workflows:
 
 - [BrowserSync](http://www.browsersync.io/)
 - [SASS](http://sass-lang.com/) (super fast libsass)
+- [Less](https://github.com/plus3network/gulp-less)
 - [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer)
 - [ClearCss](https://github.com/scniro/gulp-clean-css)
 - [Javascript Lint](https://github.com/spalger/gulp-jshint)
+- [gulp-watch](https://github.com/floatdrop/gulp-watch)
 - [Uglify](https://github.com/terinjokes/gulp-uglify)
 - [Image optimization](https://github.com/sindresorhus/gulp-imagemin) (only [changed images](https://github.com/sindresorhus/gulp-changed))
 - Asset Fingerprinting using [gulp-rev](https://github.com/sindresorhus/gulp-rev) and [gulp-rev-replace](https://github.com/jamesknelson/gulp-rev-replace)
@@ -65,7 +67,7 @@ $ hugulp watch --config config.yaml
 
 ### hugulp watch
 It will do the following:
-1. Process files based on their location, according to the following table
+- Process files based on their location, according to the following table
 
 | In Folder | Looks for  | Operation |
 | ------ | :-----: | --------- |
@@ -74,16 +76,16 @@ It will do the following:
 | assets/scripts | js | Minify javascript code |
 *Note: It searches the folders recursively*
 
-2. Fingerprint the optimized assets from the previous step
-3. Invoke hugo to generate the site
+- Fingerprint the optimized assets from the previous step
+- Invoke hugo to generate the site
 
 hugo will be invoked like this:
 ```bash
 $ hugo --config=config.toml -s . -d ./public --buildDrafts=true --verbose=true --baseUrl="http://localhost:3000/"
 ```
 
-4. Change all references to the assets in your content files (index.html, etc.)
-5. Watch for changes to content files or assets to reload the browser
+- Change all references to the assets in your content files (index.html, etc.)
+- Watch for changes to content files or assets to reload the browser
 
 ### hugulp build
 It runs the same pipeline as the hugulp build command, but hugo is invoked as
