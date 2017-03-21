@@ -35,6 +35,7 @@
     "gulp-svgmin": "^1.2.3",
     "gulp-uglify": "^2.1.1",
     "gulp-util": "^3.0.8",
+    "gulp-watch": "^4.3.11",
     "jshint": "^2.9.4",
     "merge-stream": "^1.0.1",
     "path": "^0.12.7",
