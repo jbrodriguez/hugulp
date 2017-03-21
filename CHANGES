@@ -1,3 +1,18 @@
+Version 1.3.0 - 2017-03-20
+- Add less support
+- Ignore log files
+- Expand glob for assets
+- Update README
+- Remove log file
+- Release 1.2.0
+- Display hugulp version
+- Add less to watched files
+- Upgrade dependencies
+- Replace gulp.watch with gulp-watch
+- Fix styles folder watch
+- Update README
+
+
 Version 1.2.0 - 2017-03-18
 - Ignore log files
 - Add less support
