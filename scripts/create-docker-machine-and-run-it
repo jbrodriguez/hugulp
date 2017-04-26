@@ -1,0 +1,156 @@
+#!/bin/bash
+#
+# Setup a docker machine for development
+set -eu
+
+readonly PROGNAME=$(basename "$0")
+readonly ARGS=("$@")
+# Docker settings
+HUGO_VERSION=0.20.6
+NODE_VERSION="7.9.0-alpine"
+APP_NAME="app"
+DETACHED=
+check_where_cmd_is_run() {
+  # Check if script is being run from the root directory
+  if [ ! -d 'gulp' ]; then
+    cat <<- EOF
+		Please run this script from the root directory.
+
+		Example:
+			./scripts/create-docker-machine-and-run-it
+
+		-- OR --
+
+		bash ./scripts/create-docker-machine-and-run-it
+		EOF
+		exit 1
+	fi
+}
+
+usage() {
+  cat <<- EOF
+	Usage: ./scripts/$PROGNAME optional options
+
+	Setups a docker machine and runs it for development.
+
+	OPTIONS:
+	   -g --hugo-version the hugo version to be installed. Minus v or version prefix. It defaults to 0.9
+	   -n --node-version the node version to be installed. Minus v or version prefix. It defaults to 6.10.0
+	   -a --app-name the name of the app. It defaults to app
+	   -d --detached detached mode: Run containers in the background, print new container names.
+	   -h --help show this help
+
+	Examples:
+	Run with default settings:
+
+	   ./scripts/$PROGNAME
+
+	Run with custom machine name, specific hugo version, specific node version and run docker in detached mode:
+
+	   bash ./scripts/$PROGNAME -a app-name -g 0.9 -n 6.10.0
+	EOF
+}
+
+cmdline() {
+  local arg=
+  local args=
+  for arg; do
+    local delim=""
+    case "$arg" in
+      # Copied from: http://www.kfirlavi.com/blog/2012/11/14/defensive-bash-programming/
+      # Translate --machine-name to -m (short options)
+      --hugo-version)   args="${args}-g ";;
+      --node-version)   args="${args}-n ";;
+      --app-name)       args="${args}-a ";;
+      --detached)       args="${args}-d ";;
+      --help)           args="${args}-h ";;
+      #pass through anything else
+      *) [[ "${arg:0:1}" == "-" ]] || delim="\""
+          args="${args}${delim}${arg}${delim} ";;
+    esac
+  done
+  while getopts "g:n:a:dh" OPTION; do
+    case "$OPTION" in
+      h)
+        usage
+        exit 0
+        ;;
+      g)
+        HUGO_VERSION=$OPTARG
+        ;;
+      n)
+        NODE_VERSION=$OPTARG
+        ;;
+      a)
+        APP_NAME=$OPTARG
+        ;;
+      d)
+        DETACHED='-d'
+        ;;
+    esac
+  done
+  return 0
+}
+
+create_docker_file() {
+  # Check to make sure Dockerfile exist
+  if [ ! -f './docker/Dockerfile.template' ]; then
+    echo "This script requires ./docker/Dockerfile.template file to setup docker."
+  exit 1
+  fi
+  echo "Creating Dockerfile file..."
+  cp ./docker/Dockerfile.template ./Dockerfile
+  # Replace some lines in existing Dockerfile.
+  # Set sed -i option to '' to prevent it from creating backup files
+  # Replace node version set value
+  sed -i '' -e "s|^FROM node:\([0-9\.]*\).*|FROM node:$NODE_VERSION|" \
+    Dockerfile
+  # Replace hugo version with set value
+  sed -i '' -e "s|^ARG HUGO_VERSION=\([0-9\.]*\).*|ARG HUGO_VERSION=$HUGO_VERSION|" \
+    Dockerfile
+  # Replace app home directory with set value
+  sed -i '' -e "s|\$HOME/[a-zA-Z0-9]*/$|\$HOME/$APP_NAME/|g" \
+    Dockerfile
+  echo "Dockerfile successfully created."
+}
+
+setup_docker() {
+  # Check if docker is installed on the machine
+  if ! docker version > /dev/null; then
+    echo "Please docker-engine and docker-compose are required to be installed on the host machine"
+    echo "https://docs.docker.com/engine/installation/"
+    echo "https://docs.docker.com/compose/"
+    exit 1
+  fi
+  create_docker_file
+}
+
+setup_docker_compose() {
+  # Check to make sure docker-compose template file exist
+  if [ ! -f './docker/docker-compose.yaml.template' ]; then
+    echo "This script requires ./docker/docker-compose.yaml.template file to setup docker-compose."
+    exit 1
+  fi
+  echo "Creating docker-compose.yaml file..."
+  cp ./docker/docker-compose.yaml.template ./docker-compose.yaml
+  echo "docker-compose.yaml successfully created."
+  sed -i '' -e "s/app:/${APP_NAME}:/" \
+    docker-compose.yaml
+  sed -i '' -e "s/app/$APP_NAME/g" \
+    docker-compose.yaml
+  if [[ "$DETACHED" != "" ]]; then
+    docker-compose up --build "$DETACHED" "$APP_NAME"
+  else
+    docker-compose up --build "$APP_NAME"
+  fi
+}
+
+#######################
+#    Main function    #
+#######################
+if [[ $# -gt 0 ]]; then
+  cmdline "${ARGS[@]}"
+fi
+check_where_cmd_is_run
+setup_docker
+setup_docker_compose

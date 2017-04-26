@@ -33,6 +33,22 @@ Then just
 $ npm install -g hugulp
 ```
 
+Or you can build and run using [docker](https://www.docker.com):
+
+```bash
+# Default docker setup: 
+$ ./scripts/create-docker-machine-and-run-it
+
+# -- OR --
+
+# Run with custom machine name, specific hugo version, specific node version and run docker in detached mode:
+$ ./scripts/create-docker-machine-and-run-it -a app-devel -g 0.20.6 -n 6.10.0 -d
+```
+
+**Note:** You only run the `./scripts/create-docker-machine-and-run-it` if you want to create 
+a new docker machine. Once the docker machine is created, you have to use docker commands 
+to manage it. Please be familiar with docker in this regard.
+
 ## Getting Started
 *hugulp* requires you to create the following folders inside your hugo site:
 
