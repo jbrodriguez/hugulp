@@ -1,0 +1,80 @@
+#!/bin/sh
+#
+# Creates pre-requiste hugo site
+set -eu
+
+readonly PROGNAME=$(basename "$0")
+readonly ARGS="$@"
+APP_NAME="app"
+
+usage() {
+	cat <<- EOF
+	Usage: ./scripts/$PROGNAME optional options
+
+	Creates folders needed to run hulgulp if they do not exist
+
+	OPTIONS:
+		-a --app-name the name of the app. It defaults to app
+		-h --help show this help
+
+	Example:
+	Run with a hugo website name set to website
+
+		./scripts/$PROGNAME -a website
+	EOF
+}
+
+cmdline() {
+  local arg=
+  local args=
+  for arg; do
+    local delim=""
+    case "$arg" in
+      # Copied from: http://www.kfirlavi.com/blog/2012/11/14/defensive-bash-programming/
+      # Translate --machine-name to -m (short options)
+      --app-name)       args="${args}-a ";;
+      --help)           args="${args}-h ";;
+      #pass through anything else
+      *) [[ "${arg:0:1}" == "-" ]] || delim="\""
+          args="${args}${delim}${arg}${delim} ";;
+    esac
+  done
+
+  OPTIND=1
+  while getopts "ha:" OPTION; do
+    case "$OPTION" in
+      h)
+        usage
+        exit 0
+        ;;
+      a)
+        APP_NAME=$OPTARG
+        ;;
+    esac
+  done
+  shift "$((OPTIND-1))" # Shift off the options and optional --.
+  return 0
+}
+
+create_hugo_site() {
+  if [ ! -d "$APP_NAME" ]; then
+    hugo new site "$APP_NAME"
+  fi
+}
+
+create_assets_folders() {
+  if [ ! -d "${APP_NAME}/assets" ]; then
+    mkdir -p "${APP_NAME}"/assets/img
+    mkdir -p "${APP_NAME}"/assets/styles
+    mkdir -p "${APP_NAME}"/assets/scripts
+  fi
+}
+
+#######################
+#    Main function    #
+#######################
+if [[ $# -gt 0 ]]; then
+  cmdline "$@"
+fi
+create_hugo_site
+create_assets_folders

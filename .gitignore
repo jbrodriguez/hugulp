@@ -8,3 +8,7 @@ node_modules
 # bower
 bower_components
 src/vendor
+
+# docker
+Dockerfile
+docker-compose.yaml
