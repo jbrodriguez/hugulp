@@ -23,6 +23,10 @@ function version() {
 	console.log("hugulp v" + module.exports.version)
 }
 
+function minifyhtml() {
+	gulp.start('minifyhtml:minifyhtml')
+}
+
 program
 	.command('build')
 	.option('-c, --config [value]', 'Define an alternative config')
@@ -40,5 +44,10 @@ program
 	.option('-v, --version', 'Display version')
 	.description('display version information')
 	.action(version)
+
+program
+	.command('minifyhtml')
+	.description('minify your created html')
+	.action(minifyhtml)
 
 program.parse(process.argv)
