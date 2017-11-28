@@ -1,3 +1,3 @@
-var gulp = require("gulp");
+const gulp = require('gulp');
 
-gulp.task('bundle', ['build:publish']);
+gulp.task('bundle', ['build:publish'])
