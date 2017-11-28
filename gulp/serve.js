@@ -1,6 +1,6 @@
-var gulp = require('gulp')
-var browserSync = require('browser-sync')
-var watch = require('gulp-watch')
+const gulp = require('gulp')
+const browserSync = require('browser-sync')
+const watch = require('gulp-watch')
 
 const assets = [
   'assets/styles/**/*.scss',

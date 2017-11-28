@@ -1,6 +1,6 @@
-var gulp = require('gulp')
-var replace = require('gulp-rev-replace')
-var size = require('gulp-size')
+const gulp = require('gulp')
+const replace = require('gulp-rev-replace')
+const size = require('gulp-size')
 
 gulp.task('reference:content', ['hugo:draft'], function () {
   const manifest = gulp.src('public/rev-manifest.json')
@@ -21,7 +21,7 @@ gulp.task('reference:all', ['hugo:all'], function () {
 })
 
 gulp.task('reference:publish', ['hugo:live'], function () {
-  var manifest = gulp.src('public/rev-manifest.json')
+  const manifest = gulp.src('public/rev-manifest.json')
 
   return gulp.src(['public/**/*.html', 'public/**/*.xml', 'public/**/*.css'])
     .pipe(replace({manifest: manifest, replaceInExtensions: ['.html', '.xml', '.css']}))

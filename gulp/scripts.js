@@ -1,6 +1,6 @@
-var gulp = require('gulp')
-var jshint = require('gulp-jshint')
-var uglify = require('gulp-uglify')
+const gulp = require('gulp')
+const jshint = require('gulp-jshint')
+const uglify = require('gulp-uglify')
 
 gulp.task('scripts', function () {
   return gulp.src('assets/scripts/**/*.js')
