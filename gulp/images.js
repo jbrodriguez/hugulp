@@ -1,6 +1,6 @@
-var gulp = require('gulp')
-var imagemin = require('gulp-imagemin')
-var changed = require('gulp-changed')
+const gulp = require('gulp')
+const imagemin = require('gulp-imagemin')
+const changed = require('gulp-changed')
 
 gulp.task('images', function () {
   return gulp.src('assets/img/**/*.*')
