@@ -11,7 +11,7 @@ gulp.task('styles', function() {
 	    .pipe(less())
 	    .pipe(concat('less-files.css'));
 
-	var scssStream = gulp.src('assets/styles/**/*.scss')
+	var scssStream = gulp.src('assets/styles/**/*.s[a|c]ss')
 	    .pipe(sass())
 	    .pipe(concat('scss-files.css'));
 
