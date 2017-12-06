@@ -1,41 +1,37 @@
 #!/usr/bin/env node
 
-const sysPath = require('path')
+const path = require('path')
 const fs = require('fs')
 const program = require('commander')
 const gulp = require('gulp')
-// const pkginfo = require('pkginfo')(module, 'version')
+const pkginfo = require('pkginfo')(module, 'version')
 
-const join = sysPath.join
-
-require(join(fs.realpathSync(__dirname), 'gulpfile'))
-
-function bundle () {
-  gulp.start('bundle')
+function build() {
+  require(path.join(fs.realpathSync(__dirname), 'gulp', 'build'))
+  gulp.start('build')
 }
 
-function watch () {
-  gulp.start('serve')
+function watch() {
+  require(path.join(fs.realpathSync(__dirname), 'gulp', 'watch'))
+  gulp.start('watch')
 }
 
-function version () {
+function version() {
   console.log('hugulp v' + module.exports.version)
 }
 
-function minifyhtml () {
+function minifyhtml() {
   gulp.start('minifyhtml:minifyhtml')
 }
 
 program
   .command('build')
-  .option('-c, --config [value]', 'Define an alternative config')
-  .description('build site (for publishing purposes)')
-  .action(bundle)
+  .description('optimize site (for publishing purposes)')
+  .action(build)
 
 program
   .command('watch')
-  .option('-c, --config [value]', 'Define an alternative config')
-  .description('build site and watch for changes')
+  .description('watch for changes to styles and/or javascript')
   .action(watch)
 
 program
