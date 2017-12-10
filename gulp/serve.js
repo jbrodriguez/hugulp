@@ -1,21 +1,36 @@
-var gulp        = require("gulp");
-var browserSync = require("browser-sync");
-var watch 		= require("gulp-watch");
+const gulp = require('gulp')
+const browserSync = require('browser-sync')
+const watch = require('gulp-watch')
 
-gulp.task('serve', ['build:all'], function() {
+const assets = [
+  'assets/styles/**/*.scss',
+  'assets/styles/**/*.less',
+  'assets/styles/**/*.css',
+  'assets/scripts/**/*.js',
+  'assets/img/**/*.*',
+  'assets/svg/**/*.svg'
+]
+
+const content = [
+  'layouts/**/*',
+  'content/**/*',
+  'archetypes/**/*'
+]
+
+gulp.task('serve', ['build:all'], function () {
     // Serve files from the root of this project
-    browserSync({
-        server: {
-            baseDir: "./public/"
-        },
-        open: false
-    });
+  browserSync({
+    server: {
+      baseDir: './public/'
+    },
+    open: false
+  })
 
-    watch(['layouts/**/*', 'content/**/*', 'archetypes/**/*'], {}, function handle() {
-		gulp.start('build:content');
-	});
+  watch(content, {}, function handle () {
+    gulp.start('build:content')
+  })
 
-    watch(['assets/styles/**/*.scss', 'assets/styles/**/*.less', 'assets/styles/**/*.css', 'assets/scripts/**/*.js', 'assets/img/**/*.*', 'assets/svg/**/*.svg'], {}, function handle() {
-		gulp.start('build:all');
-	});
-});
+  watch(assets, {}, function handle () {
+    gulp.start('build:all')
+  })
+})

@@ -1,53 +1,52 @@
 #!/usr/bin/env node
 
-var sysPath = require('path')
-var fs = require('fs')
-var program = require('commander')
-var gulp = require('gulp')
-var pkginfo = require('pkginfo')(module, 'version');
+const sysPath = require('path')
+const fs = require('fs')
+const program = require('commander')
+const gulp = require('gulp')
+// const pkginfo = require('pkginfo')(module, 'version')
 
-var join = sysPath.join
+const join = sysPath.join
 
 require(join(fs.realpathSync(__dirname), 'gulpfile'))
 
-function bundle() {
-    // console.log('gulpfile contains task!');
-	gulp.start('bundle');
+function bundle () {
+  gulp.start('bundle')
 }
 
-function watch() {
-	gulp.start('serve')
+function watch () {
+  gulp.start('serve')
 }
 
-function version() {
-	console.log("hugulp v" + module.exports.version)
+function version () {
+  console.log('hugulp v' + module.exports.version)
 }
 
-function minifyhtml() {
-	gulp.start('minifyhtml:minifyhtml')
+function minifyhtml () {
+  gulp.start('minifyhtml:minifyhtml')
 }
 
 program
-	.command('build')
-	.option('-c, --config [value]', 'Define an alternative config')
-	.description('build site (for publishing purposes)')
-	.action(bundle)
+  .command('build')
+  .option('-c, --config [value]', 'Define an alternative config')
+  .description('build site (for publishing purposes)')
+  .action(bundle)
 
 program
-	.command('watch')
-	.option('-c, --config [value]', 'Define an alternative config')
-	.description('build site and watch for changes')
-	.action(watch)
+  .command('watch')
+  .option('-c, --config [value]', 'Define an alternative config')
+  .description('build site and watch for changes')
+  .action(watch)
 
 program
-	.command('version')
-	.option('-v, --version', 'Display version')
-	.description('display version information')
-	.action(version)
+  .command('version')
+  .option('-v, --version', 'Display version')
+  .description('display version information')
+  .action(version)
 
 program
-	.command('minifyhtml')
-	.description('minify your created html')
-	.action(minifyhtml)
+  .command('minifyhtml')
+  .description('minify your created html')
+  .action(minifyhtml)
 
 program.parse(process.argv)
