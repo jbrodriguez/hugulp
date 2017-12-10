@@ -5,6 +5,8 @@ const fs = require('fs')
 const program = require('commander')
 const gulp = require('gulp')
 const pkginfo = require('pkginfo')(module, 'version')
+const gutil = require('gulp-util')
+
 function init() {
   gutil.log(gutil.colors.red(`hugulp v${module.exports.version}`))
 
@@ -55,11 +57,15 @@ function init() {
 }
 
 function build() {
+  gutil.log(gutil.colors.red(`hugulp v${module.exports.version}`))
+
   require(path.join(fs.realpathSync(__dirname), 'gulp', 'build'))
   gulp.start('build')
 }
 
 function watch() {
+  gutil.log(gutil.colors.red(`hugulp v${module.exports.version}`))
+
   require(path.join(fs.realpathSync(__dirname), 'gulp', 'watch'))
   gulp.start('watch')
 }
@@ -68,9 +74,15 @@ function version() {
   console.log('hugulp v' + module.exports.version)
 }
 
-function minifyhtml() {
-  gulp.start('minifyhtml:minifyhtml')
-}
+program
+  .command('init')
+  .description('create default .hugulprc')
+  .action(init)
+
+program
+  .command('version')
+  .description('display version information')
+  .action(version)
 
 program
   .command('build')
@@ -81,16 +93,5 @@ program
   .command('watch')
   .description('watch for changes to styles and/or javascript')
   .action(watch)
-
-program
-  .command('version')
-  .option('-v, --version', 'Display version')
-  .description('display version information')
-  .action(version)
-
-program
-  .command('minifyhtml')
-  .description('minify your created html')
-  .action(minifyhtml)
 
 program.parse(process.argv)
