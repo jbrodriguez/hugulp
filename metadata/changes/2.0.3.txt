@@ -1,0 +1,5 @@
+2017-12-12 - 2.0.3
+
+- Make sure all tasks are executed
+- Display pipeline being executed
+- Display space optimization achieved
