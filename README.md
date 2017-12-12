@@ -113,7 +113,7 @@ This is the default `.hugulprc`:
 
 ```json
 {
-  "version": 1,
+  "version": 2,
   "pipeline": ["images", "styles", "scripts", "fingerprint", "html"],
   "path": {
     "styles": "styles",
@@ -287,9 +287,9 @@ Type: object <br>
 Default:
 
 ```json
-build: {
-  source: 'public',
-  target: 'public'
+"build": {
+  "source": "public",
+  "target": "public"
 }
 ```
 
@@ -307,8 +307,8 @@ Type: object<br>
 Default:
 
 ```json
-autoprefixer: {
-  browsers: ['last 2 versions']
+"autoprefixer": {
+  "browsers": ["last 2 versions"]
 }
 ```
 
@@ -321,8 +321,8 @@ Task: `styles`
 Default:
 
 ```json
-cleancss: {
-  advanced: false
+"cleancss": {
+  "advanced": false
 }
 ```
 
@@ -335,9 +335,65 @@ Task: `html`
 Default:
 
 ```json
-htmlmin: {
-  collapsedWhitespace: true,
-  removeEmptyElements: true
+"htmlmin": {
+  "collapsedWhitespace": true,
+  "removeEmptyElements": true
+}
+```
+
+### gifsicle
+
+Options for `gifsicle`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
+
+Task: `images`
+
+Default:
+
+```json
+"gifsicle": {
+  "interlaced": true
+}
+```
+
+### jpegtran
+
+Options for `gifsicle`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
+
+Task: `images`
+
+Default:
+
+```json
+"jpegtran": {
+  "progressive": true
+}
+```
+
+### optipng
+
+Options for `gifsicle`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
+
+Task: `images`
+
+Default:
+
+```json
+"optipng": {
+  "optimizationLevel": 5
+}
+```
+
+### svgo
+
+Options for `gifsicle`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
+
+Task: `images`
+
+Default:
+
+```json
+"svgo": {
+  "plugins": [{ "removeViewBox": true }, { "cleanupIDs": false }]
 }
 ```
 
