@@ -1,52 +1,97 @@
 #!/usr/bin/env node
 
-const sysPath = require('path')
+const path = require('path')
 const fs = require('fs')
 const program = require('commander')
 const gulp = require('gulp')
-// const pkginfo = require('pkginfo')(module, 'version')
+const pkginfo = require('pkginfo')(module, 'version')
+const gutil = require('gulp-util')
 
-const join = sysPath.join
+function init() {
+  gutil.log(gutil.colors.red(`hugulp v${module.exports.version}`))
 
-require(join(fs.realpathSync(__dirname), 'gulpfile'))
+  const hugulpRc = path.join(process.cwd(), '.hugulprc')
 
-function bundle () {
-  gulp.start('bundle')
+  if (fs.existsSync(hugulpRc)) {
+    gutil.log(
+      gutil.colors.yellow('.hugulprc already exists (initialization skipped)')
+    )
+    return
+  }
+
+  const config = {
+    version: 1,
+    pipeline: ['images', 'styles', 'scripts', 'fingerprint', 'html'],
+    path: {
+      styles: 'styles',
+      images: 'images',
+      scripts: 'scripts'
+    },
+    watch: {
+      source: 'assets',
+      target: 'static'
+    },
+    build: {
+      source: 'public',
+      target: 'public'
+    },
+    autoprefixer: {
+      browsers: ['last 2 versions']
+    },
+    cleancss: {
+      advanced: false
+    },
+    htmlmin: {
+      collapsedWhitespace: true,
+      removeEmptyElements: true
+    }
+  }
+
+  fs.writeFileSync(hugulpRc, JSON.stringify(config, null, '  '))
+
+  gutil.log(
+    gutil.colors.green(
+      'hugulp has been initialized (.hugulprc was created with default values)'
+    )
+  )
 }
 
-function watch () {
-  gulp.start('serve')
+function build() {
+  gutil.log(gutil.colors.red(`hugulp v${module.exports.version}`))
+
+  require(path.join(fs.realpathSync(__dirname), 'gulp', 'build'))
+  gulp.start('build')
 }
 
-function version () {
+function watch() {
+  gutil.log(gutil.colors.red(`hugulp v${module.exports.version}`))
+
+  require(path.join(fs.realpathSync(__dirname), 'gulp', 'watch'))
+  gulp.start('watch')
+}
+
+function version() {
   console.log('hugulp v' + module.exports.version)
 }
 
-function minifyhtml () {
-  gulp.start('minifyhtml:minifyhtml')
-}
-
 program
-  .command('build')
-  .option('-c, --config [value]', 'Define an alternative config')
-  .description('build site (for publishing purposes)')
-  .action(bundle)
-
-program
-  .command('watch')
-  .option('-c, --config [value]', 'Define an alternative config')
-  .description('build site and watch for changes')
-  .action(watch)
+  .command('init')
+  .description('create default .hugulprc')
+  .action(init)
 
 program
   .command('version')
-  .option('-v, --version', 'Display version')
   .description('display version information')
   .action(version)
 
 program
-  .command('minifyhtml')
-  .description('minify your created html')
-  .action(minifyhtml)
+  .command('build')
+  .description('optimize site (for publishing purposes)')
+  .action(build)
+
+program
+  .command('watch')
+  .description('watch for changes to styles and/or javascript')
+  .action(watch)
 
 program.parse(process.argv)
