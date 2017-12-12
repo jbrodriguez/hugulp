@@ -74,6 +74,7 @@ gulp.task('styles:cleancss', function() {
     .pipe(autoprefixer(config.autoprefixer))
     .pipe(cleancss(config.cleancss))
     .pipe(concat('styles.css'))
+    .pipe(size({ title: 'styles: ' }))
     .pipe(gulp.dest(path.join(config.build.target, config.path.styles))) // i.e.: public/styles/styles.css
 })
 
@@ -88,6 +89,7 @@ gulp.task('scripts', function() {
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(uglify())
+    .pipe(size({ title: 'scripts: ' }))
     .pipe(gulp.dest(path.join(config.build.target, config.path.scripts)))
 })
 
@@ -136,6 +138,7 @@ gulp.task('html', function(cb) {
     [
       gulp.src(path.join(config.build.source, '**', '*.html')),
       htmlmin(config.htmlmin),
+      size({ title: 'html: ' }),
       gulp.dest(config.build.target)
     ],
     cb
