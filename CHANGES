@@ -1,3 +1,11 @@
+Version 2.0.1 - 2017-12-12
+- Run styles/scripts tasks on watch invocation
+- Use proper JSON syntax
+- Fix update instructions
+- Add granular imagemin configuration
+- Adjust default .hugulprc
+
+
 Version 2.0.0 - 2017-12-12
 - Read/compile sass and scss (#37)
 - Replace var (#34)

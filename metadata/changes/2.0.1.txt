@@ -1,0 +1,7 @@
+2017-12-12 - 2.0.1
+
+- Run styles/scripts tasks on watch invocation
+- Add granular imagemin configuration
+- Adjust default .hugulprc
+- Fix JSON syntax in README
+- Fix update instructions
