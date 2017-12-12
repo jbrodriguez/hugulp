@@ -1,3 +1,7 @@
+Version 2.0.2 - 2017-12-12
+- Fix plugin names
+
+
 Version 2.0.1 - 2017-12-12
 - Run styles/scripts tasks on watch invocation
 - Use proper JSON syntax
