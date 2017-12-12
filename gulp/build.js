@@ -43,7 +43,9 @@ const replace = require('gulp-rev-replace')
 const htmlmin = require('gulp-htmlmin')
 
 gulp.task('build', function(cb) {
-  gutil.log(gutil.colors.green('building site ...'))
+  gutil.log(
+    gutil.colors.green(`building site ... (${JSON.stringify(config.pipeline)})`)
+  )
 
   // config.pipeline is an array of task names
   // i.e.: ['images', 'styles']
