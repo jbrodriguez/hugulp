@@ -1,3 +1,20 @@
+Version 2.0.0 - 2017-12-12
+- Read/compile sass and scss (#37)
+- Replace var (#34)
+- Replace yarn with npm5
+- Use standard format
+- Implement hugulp next
+- Add init command
+- Clean up & add logging
+- Code refactoring
+- Add missing package
+- Update docs for v2
+- Implements next
+- Remove v1 code
+- Fix inclusion of production files
+- Use vscode instead of atom
+
+
 Version 1.4.0 - 2017-11-27
 - Add docker support (#24)
 - Minifyhtml (#31)

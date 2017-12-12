@@ -1,0 +1,9 @@
+2017-12-12 - 2.0.0
+
+This is a re-thinking of hugulp, in order to be more flexible and better support hugo's features.
+
+hugulp now works as a post-processor, optimizing the output that hugo generates in the public folder.
+
+You can now invoke hugo from the command line as it best suits you and use any theme you want.
+
+Check the README for v2 docs.
