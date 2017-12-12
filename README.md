@@ -357,7 +357,7 @@ Default:
 
 ### jpegtran
 
-Options for `gifsicle`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
+Options for `jpegtran`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
 
 Task: `images`
 
@@ -371,7 +371,7 @@ Default:
 
 ### optipng
 
-Options for `gifsicle`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
+Options for `optipng`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
 
 Task: `images`
 
@@ -385,7 +385,7 @@ Default:
 
 ### svgo
 
-Options for `gifsicle`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
+Options for `svgo`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
 
 Task: `images`
 
