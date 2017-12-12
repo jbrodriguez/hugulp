@@ -28,6 +28,9 @@ gulp.task('watch', function() {
     path.join(config.watch.source, config.path.styles, '**', '*.css')
   ]
 
+  gutil.log(gutil.colors.green(`running styles task ...`))
+  gulp.start('styles')
+
   gutil.log(gutil.colors.green(`watching ${JSON.stringify(styles)}`))
 
   watch(styles, {}, function handle(param) {
@@ -43,6 +46,9 @@ gulp.task('watch', function() {
   const scripts = [
     path.join(config.watch.source, config.path.scripts, '**', '*.js')
   ]
+
+  gutil.log(gutil.colors.green(`running scripts task ...`))
+  gulp.start('scripts')
 
   gutil.log(gutil.colors.green(`watching ${JSON.stringify(scripts)}`))
 
