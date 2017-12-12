@@ -65,7 +65,7 @@ gulp.task('images', function() {
     .pipe(gulp.dest(path.join(config.build.target, config.path.images))) // i.e.: public/images
 })
 
-gulp.task('styles:cleancss', function() {
+gulp.task('styles', function() {
   const streams = helper.getStylesStreams()
 
   return merge(...streams)
@@ -73,11 +73,6 @@ gulp.task('styles:cleancss', function() {
     .pipe(cleancss(config.cleancss))
     .pipe(concat('styles.css'))
     .pipe(gulp.dest(path.join(config.build.target, config.path.styles))) // i.e.: public/styles/styles.css
-})
-
-// default styles task
-gulp.task('styles', function() {
-  sequence('styles:cleancss')
 })
 
 gulp.task('scripts', function() {

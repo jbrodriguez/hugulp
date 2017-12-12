@@ -63,17 +63,12 @@ gulp.task('watch', function() {
   })
 })
 
-gulp.task('styles:cleancss', function() {
+gulp.task('styles', function() {
   const streams = helper.getStylesStreams()
 
   return merge(...streams)
     .pipe(concat('styles.css'))
     .pipe(gulp.dest(path.join(config.watch.target, config.path.styles))) // i.e.: static/styles/styles.css
-})
-
-// default styles task
-gulp.task('styles', function() {
-  sequence('styles:cleancss')
 })
 
 gulp.task('scripts', function() {
