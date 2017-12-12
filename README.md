@@ -113,30 +113,36 @@ This is the default `.hugulprc`:
 
 ```json
 {
-  version: 1,
-  pipeline: ["images", "styles", "scripts", "fingerprint", "html"],
-  path: {
-    styles: "styles",
-    images: "images",
-    scripts: "scripts"
+  "version": 2,
+  "pipeline": ["images", "styles", "scripts", "fingerprint", "html"],
+  "path": {
+    "styles": "styles",
+    "images": "images",
+    "scripts": "scripts"
   },
-  watch: {
-    source: "assets",
-    target: "static"
+  "watch": {
+    "source": "assets",
+    "target": "static"
   },
-  build: {
-    source: "public",
-    target: "public"
+  "build": {
+    "source": "public",
+    "target": "public"
   },
-  autoprefixer: {
-    browsers: ["last 2 versions"]
+  "autoprefixer": {
+    "browsers": ["last 2 versions"]
   },
-  cleancss: {
-    advanced: false
+  "cleancss": {
+    "advanced": false
   },
-  htmlmin: {
-    collapsedWhitespace: true,
-    removeEmptyElements: true
+  "htmlmin": {
+    "collapsedWhitespace": true,
+    "removeEmptyElements": true
+  },
+  "gifsicle": { "interlaced": true },
+  "jpegtran": { "progressive": true },
+  "optipng": { "optimizationLevel": 5 },
+  "svgo": {
+    "plugins": [{ "removeViewBox": true }, { "cleanupIDs": false }]
   }
 }
 ```
@@ -192,7 +198,7 @@ Type: array <br>
 Default:
 
 ```json
-pipeline: ['images', 'styles', 'scripts', 'fingerprint', 'html']
+"pipeline": ["images", "styles", "scripts", "fingerprint", "html"]
 ```
 
 | Task        | Description                                                        |
@@ -206,7 +212,7 @@ pipeline: ['images', 'styles', 'scripts', 'fingerprint', 'html']
 Let's say you don't want to fingerprint the assets. Just set _pipeline_ to
 
 ```json
-pipeline: ['images', 'styles', 'scripts', 'html']
+"pipeline": ["images", "styles", "scripts", "html"]
 ```
 
 By removing the _fingerprint_ task, it will not be executed.
@@ -221,20 +227,20 @@ Type: object <br>
 Default:
 
 ```json
-path: {
-  styles: 'styles',
-  images: 'images',
-  scripts: 'scripts'
+"path": {
+  "styles": "styles",
+  "images": "images",
+  "scripts": "scripts"
 }
 ```
 
 So if you prefer your styles folder to be called css, and scripts to be called js, you would change it to:
 
 ```json
-path: {
-  styles: 'css',
-  images: 'images',
-  scripts: 'js'
+"path": {
+  "styles": "css",
+  "images": "images",
+  "scripts": "js"
 }
 ```
 
@@ -246,9 +252,9 @@ Type: object <br>
 Default:
 
 ```json
-watch: {
-  source: 'assets',
-  target: 'static'
+"watch": {
+  "source": "assets",
+  "target": "static"
 }
 ```
 
@@ -261,9 +267,9 @@ If you customized `path` as per above, it will watch `assets/css` and `assets/js
 If you additionally want the `assets` folder to be called `resources`, change _source_ to `resources`
 
 ```json
-watch: {
-  source: 'resources',
-  target: 'static'
+"watch": {
+  "source": "resources",
+  "target": "static"
 }
 ```
 
@@ -281,9 +287,9 @@ Type: object <br>
 Default:
 
 ```json
-build: {
-  source: 'public',
-  target: 'public'
+"build": {
+  "source": "public",
+  "target": "public"
 }
 ```
 
@@ -301,8 +307,8 @@ Type: object<br>
 Default:
 
 ```json
-autoprefixer: {
-  browsers: ['last 2 versions']
+"autoprefixer": {
+  "browsers": ["last 2 versions"]
 }
 ```
 
@@ -315,8 +321,8 @@ Task: `styles`
 Default:
 
 ```json
-cleancss: {
-  advanced: false
+"cleancss": {
+  "advanced": false
 }
 ```
 
@@ -329,9 +335,65 @@ Task: `html`
 Default:
 
 ```json
-htmlmin: {
-  collapsedWhitespace: true,
-  removeEmptyElements: true
+"htmlmin": {
+  "collapsedWhitespace": true,
+  "removeEmptyElements": true
+}
+```
+
+### gifsicle
+
+Options for `gifsicle`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
+
+Task: `images`
+
+Default:
+
+```json
+"gifsicle": {
+  "interlaced": true
+}
+```
+
+### jpegtran
+
+Options for `gifsicle`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
+
+Task: `images`
+
+Default:
+
+```json
+"jpegtran": {
+  "progressive": true
+}
+```
+
+### optipng
+
+Options for `gifsicle`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
+
+Task: `images`
+
+Default:
+
+```json
+"optipng": {
+  "optimizationLevel": 5
+}
+```
+
+### svgo
+
+Options for `gifsicle`. Check [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) for documentation.
+
+Task: `images`
+
+Default:
+
+```json
+"svgo": {
+  "plugins": [{ "removeViewBox": true }, { "cleanupIDs": false }]
 }
 ```
 
@@ -340,7 +402,7 @@ htmlmin: {
 Whenever a new `hugulp` version becomes available, you can update it by running
 
 ```bash
-$ npm update -g hugulp
+$ npm install -g hugulp
 ```
 
 ## PR

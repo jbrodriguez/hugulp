@@ -54,7 +54,14 @@ gulp.task('build', function(cb) {
 gulp.task('images', function() {
   return gulp
     .src(path.join(config.build.source, config.path.images, '**', '*.*')) // i.e.: public/images/**/*.*
-    .pipe(imagemin())
+    .pipe(
+      imagemin([
+        imagemin.gifsicle(config.gifsicle),
+        imagemin.jpegtran(config.jpegtran),
+        imagemin.optipng(config.optipng),
+        imagemin.svgo(config.svgo)
+      ])
+    )
     .pipe(gulp.dest(path.join(config.build.target, config.path.images))) // i.e.: public/images
 })
 
