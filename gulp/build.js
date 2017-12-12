@@ -49,7 +49,7 @@ gulp.task('build', function(cb) {
 
   // config.pipeline is an array of task names
   // i.e.: ['images', 'styles']
-  sequence(...config.pipeline)
+  sequence(...config.pipeline, cb)
 })
 
 // .pipe(changed('staging/img'))
@@ -128,7 +128,7 @@ gulp.task('reference', function() {
 })
 
 gulp.task('fingerprint', function(cb) {
-  sequence('revision', 'reference')
+  sequence('revision', 'reference', cb)
 })
 
 gulp.task('html', function(cb) {
