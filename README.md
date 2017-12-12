@@ -135,8 +135,7 @@ This is the default `.hugulprc`:
     "advanced": false
   },
   "htmlmin": {
-    "collapsedWhitespace": true,
-    "removeEmptyElements": true
+    "collapseWhitespace": true
   },
   "gifsicle": { "interlaced": true },
   "jpegtran": { "progressive": true },
@@ -336,8 +335,7 @@ Default:
 
 ```json
 "htmlmin": {
-  "collapsedWhitespace": true,
-  "removeEmptyElements": true
+  "collapsedWhitespace": true
 }
 ```
 

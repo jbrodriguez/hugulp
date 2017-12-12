@@ -42,8 +42,7 @@ function init() {
       advanced: false
     },
     htmlmin: {
-      collapsedWhitespace: true,
-      removeEmptyElements: true
+      collapseWhitespace: true
     },
     gifsicle: { interlaced: true },
     jpegtran: { progressive: true },
