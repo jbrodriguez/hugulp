@@ -72,8 +72,8 @@ gulp.task('styles:cleancss', function() {
 })
 
 // default styles task
-gulp.task('styles', function() {
-  sequence('styles:cleancss')
+gulp.task('styles', function(cb) {
+  sequence('styles:cleancss', cb)
 })
 
 gulp.task('scripts', function() {

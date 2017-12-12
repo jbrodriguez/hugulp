@@ -43,11 +43,13 @@ const replace = require('gulp-rev-replace')
 const htmlmin = require('gulp-htmlmin')
 
 gulp.task('build', function(cb) {
-  gutil.log(gutil.colors.green('building site ...'))
+  gutil.log(
+    gutil.colors.green(`building site ... (${JSON.stringify(config.pipeline)})`)
+  )
 
   // config.pipeline is an array of task names
   // i.e.: ['images', 'styles']
-  sequence(...config.pipeline)
+  sequence(...config.pipeline, cb)
 })
 
 // .pipe(changed('staging/img'))
@@ -72,12 +74,13 @@ gulp.task('styles:cleancss', function() {
     .pipe(autoprefixer(config.autoprefixer))
     .pipe(cleancss(config.cleancss))
     .pipe(concat('styles.css'))
+    .pipe(size({ title: 'styles: ' }))
     .pipe(gulp.dest(path.join(config.build.target, config.path.styles))) // i.e.: public/styles/styles.css
 })
 
 // default styles task
-gulp.task('styles', function() {
-  sequence('styles:cleancss')
+gulp.task('styles', function(cb) {
+  sequence('styles:cleancss', cb)
 })
 
 gulp.task('scripts', function() {
@@ -86,6 +89,7 @@ gulp.task('scripts', function() {
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(uglify())
+    .pipe(size({ title: 'scripts: ' }))
     .pipe(gulp.dest(path.join(config.build.target, config.path.scripts)))
 })
 
@@ -126,7 +130,7 @@ gulp.task('reference', function() {
 })
 
 gulp.task('fingerprint', function(cb) {
-  sequence('revision', 'reference')
+  sequence('revision', 'reference', cb)
 })
 
 gulp.task('html', function(cb) {
@@ -134,6 +138,7 @@ gulp.task('html', function(cb) {
     [
       gulp.src(path.join(config.build.source, '**', '*.html')),
       htmlmin(config.htmlmin),
+      size({ title: 'html: ' }),
       gulp.dest(config.build.target)
     ],
     cb
