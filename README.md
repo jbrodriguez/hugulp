@@ -346,7 +346,7 @@ htmlmin: {
 Whenever a new `hugulp` version becomes available, you can update it by running
 
 ```bash
-$ npm update -g hugulp
+$ npm install -g hugulp
 ```
 
 ## PR
