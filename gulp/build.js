@@ -85,7 +85,7 @@ gulp.task('styles', function(cb) {
 
 gulp.task('scripts', function() {
   return gulp
-    .src(path.join(config.build.source, config.path.scripts, '**', '*.js'))
+    .src(path.join(config.watch.source, config.path.scripts, '**', '*.js'))
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(uglify())
