@@ -20,7 +20,7 @@ function init() {
   }
 
   const config = {
-    version: 1,
+    version: 2,
     pipeline: ['images', 'styles', 'scripts', 'fingerprint', 'html'],
     path: {
       styles: 'styles',
@@ -44,6 +44,12 @@ function init() {
     htmlmin: {
       collapsedWhitespace: true,
       removeEmptyElements: true
+    },
+    gifsicle: { interlaced: true },
+    jpegtran: { progressive: true },
+    optipng: { optimizationLevel: 5 },
+    svgo: {
+      plugins: [{ removeViewBox: true }, { cleanupIDs: false }]
     }
   }
 
