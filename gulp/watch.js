@@ -18,6 +18,9 @@ const merge = require('merge-stream')
 const concat = require('gulp-concat')
 const helper = require('./util')
 
+// scripts
+const jshint = require('gulp-jshint')
+
 gulp.task('watch', function() {
   const styles = [
     path.join(config.watch.source, config.path.styles, '**', '*.s[a|c]ss'),
@@ -72,6 +75,5 @@ gulp.task('scripts', function() {
     .src(path.join(config.watch.source, config.path.scripts, '**', '*.js'))
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
-    .pipe(uglify())
     .pipe(gulp.dest(path.join(config.watch.target, config.path.scripts)))
 })
