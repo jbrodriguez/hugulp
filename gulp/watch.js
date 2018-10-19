@@ -35,8 +35,8 @@ gulp.task('watch', function() {
 
   watch(styles, {}, function handle(param) {
     const relativePath = function(path) {
-  		return path.substring(String(process.cwd()).length)
-  	}
+      return path.substring(String(process.cwd()).length)
+    }
     gutil.log(
       gutil.colors.yellow(
         `styles: ${JSON.stringify(relativePath(param.history[0]))} - ${param.event}`
