@@ -1,3 +1,10 @@
+# DEPRECATION NOTICE
+
+I'll archive the repo by the end of August 2021.
+The main reason is [Hugo pipes](https://gohugo.io/hugo-pipes/) are built-in and pretty much cover what Hugulp does.
+I think the only part missing is image optimization, but I think you can build a pipe to do it.
+The other reason is it badly needs an update to gulp 4 and although it doesn't seem like that hard a task, I don't have the appetite to do it.
+
 # hugulp 2
 
 ## v2 Breaking changes
